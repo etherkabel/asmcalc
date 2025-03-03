@@ -1,3 +1,4 @@
+#сука ничего не работает
 global _start
 
 section .bss
