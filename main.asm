@@ -26,16 +26,24 @@ _start:
 
     mov rdi, a
     call atoi
+    mov r8, rax
 
     mov rdi, b
     call atoi
+    mov r9, rax
 
-    mov rax, [a]
-    mov rbx, [b]
-    add rax, rbx
-    mov [result], rax
+    add r8, r9
+    mov rax, r8
 
-    mov rdi, result
+    mov rdi, rax         ; Результат
+    mov rsi, result_str  ; Адрес для строки
+    call itoa
+
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, result
+    mov rdx, 64
+    syscall
 
 exit:
 	mov rdi, [result]
