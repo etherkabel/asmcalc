@@ -1,6 +1,6 @@
 global _start
-extern atoi
-extern itoa
+extern trn_str
+extern trn_int
 
 section .bss
 a resb 64
@@ -25,26 +25,26 @@ _start:
     syscall
 
     mov rdi, a
-    call atoi
-    mov r8, rax
+    call trn_int
 
     mov rdi, b
-    call atoi
-    mov r9, rax
+    call trn_int
 
+    mov r8, a
+    mov r9, b
     add r8, r9
-    mov rax, r8
+    mov rax, r9
+    mov [result], rax
 
-    mov rdi, rax         ; Результат
-    mov rsi, result_str  ; Адрес для строки
-    call itoa
+    mov rdi, result
+    mov rsi, result_str
+    call trn_str
 
     mov rax, 1
     mov rdi, 1
-    mov rsi, result
+    mov rsi, result_str
     mov rdx, 64
     syscall
-
 exit:
 	mov rdi, [result]
 	mov rax, 60
