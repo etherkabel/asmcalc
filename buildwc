@@ -1,3 +1,3 @@
 nasm -f elf64 main.asm -g -o main.o
-gcc -c -g trn.c -o trn.o -static
-ld main.o trn.o -o main
+gcc -c trn.c -o trn.o
+gcc main.o trn.o -o main -nostartfiles -no-pie
